@@ -5,6 +5,8 @@ import morgan from "morgan";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+import authRoutes from "./src/routes/authRoutes.js";
+
 
 dotenv.config();
 
@@ -29,6 +31,8 @@ mongoose.connect(process.env.MONGO_URI)
 app.get("/", (req, res) => {
   res.json({ message: "DriveCLI Backend running" });
 });
+
+app.use("/api/auth", authRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
